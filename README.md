@@ -43,6 +43,7 @@ Myslím si, že vďaka správnemu naplánovaniu štruktúry programu nebol s vyp
 Nižšie prikladám aj zdroje, z ktorých som čerpala.
 
 ## 5. Zdroje
+- Sparse Matrix and its representations, 2022, Geeks For Geeks [online]. Dostupné z: https://www.geeksforgeeks.org/sparse-matrix-representation/
 - Algebra Practise Problems, Cofactor expansion [online]. Dostupné z: https://www.algebrapracticeproblems.com/cofactor-expansion/
-- HLADÍK, Milan. Lineární algebra (nejen) pro informatiky. 2019, MatfyzPress.
+- HLADÍK, Milan, Lineární algebra (nejen) pro informatiky, 2019, MatfyzPress.
 - wikipedia
