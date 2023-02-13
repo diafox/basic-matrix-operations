@@ -44,6 +44,5 @@ Nižšie prikladám aj zdroje, z ktorých som čerpala.
 
 ## 5. Zdroje
 - Algebra Practise Problems, Cofactor expansion [online]. Dostupné z: https://www.algebrapracticeproblems.com/cofactor-expansion/
-
-
-
+- HLADÍK, Milan. Lineární algebra (nejen) pro informatiky. 2019, MatfyzPress.
+- wikipedia
