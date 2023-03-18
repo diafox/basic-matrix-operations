@@ -16,20 +16,40 @@ Rozhranie a trieda sú podobné v tom, že môžu definovať metódy a môžu by
 - `setElement(int row, int column, double value)` nastaví prvok v riadku row a stĺpci column na hodnotu value
 - `map(DoubleFunction<Double> f)` umožňuje mapovanie matice, a teda prechádza jednotlivé prvky 
 
-Pre jednotlivé maticové operácie som vytvorila triedu `MatrixOperator`, ktorá definuje metódy:
+
+### 2. 
+
+### 2.2 Trieda MatrixOperator
+Trieda MatrixOperator je pomocná trieda, ktorá poskytuje rôzne maticové operácie, ale aj vyplnenie matice či prevádzanie matice na inú reprezentáciu. Trieda berie inštanciu java.util.scanner ako parameter konštruktora.
+Definované metódy:
 - `printMatrix(Matrix m)`
+berie inštanciu Matrix ako parameter a vytlačí jej prvky (každý riadok matice na nový riadok) do konzoly s použitím triedy DecimalFormat na formátovanie desatinných čísel.
 - `isSparse(Matrix m)`
+berie inštanciu Matrix ako parameter a vracia hodnotu true, ak je matica riedka (obsahuje menej alebo rovných 10% nenulových prvkov), inak vracia hodnotu false.
 - `convertToLinkedListMatrix(MatrixArray m)`
+pomocná trieda, ktorá berie inštanciu MatrixArray ako parameter a vracia novú inštanciu MatrixLinkedList konvertovanú z parametra.
+- `convertToSparseArrayMatrix(MatrixArray m, int nonZero)`
+pomocná trieda, ktorá berie inštanciu MatrixArray a počet nenulových prvkov ako parameter a vracia novú inštanciu MatrixSparseArray konvertovanú z parametra.
 - `createSameTypeMatrix(Matrix m)`
+súkromná pomocná trieda, ktorá berie inštanciu Matrix ako parameter a vracia novú inštanciu Matrix rovnakého typu ako je tá v parametri. Používa sa na vytvorenie novej matice s rovnakým typom ako vstupná matice pre operácie, ako je napríklad transpozícia matice.
 - `fillMatrix()`
+vyzýva uživateľa na vloženie počtu riadkov a stĺpcov matice. Dáva na výber voľbu reprezentácie matice podľa jej hustoty. V prípade, že uživateľ nevie, či je jeho matica riedka, metóda to overí a zvolí správnu reprezentáciu. Ďalej uživateľ vkladá jednotlivé prvky matice zľava doprava, zhora dolu. Vytvorí a vráti novú inštanciu Matrix.
 - `transpose(Matrix m)`
+berie inštanciu Matrix ako parameter a vracia novú inštanciu Matrix, ktorá je transponovaním vstupnej matice. Používa metódu createSameTypeMatrix na vytvorenie novej matice rovnakého typu ako vstupná matica.
 - `addMatrices(Matrix first, Matrix second)`
+berie dve matice rovnakej veľkosti inštancie Matrix ako parametre a vráti maticu, ktorá je výsledkom ich sčítania.
 - `scalarMultiplication(Matrix m, scalar)`
+berie inštanciu Matrix a skalár ako parametre a vracia novú inštanciu Matrix, ktorá je výsledkom násobenia matice skalárom.
 - `calculateDeterminant(Matrix m, int rowSize)`
+ako parameter berie štvorcovú maticu inštancie Matrix a veľkosť riadku a vypočíta jej determinant pomocou rekurzívneho algoritmu a metódy `getCofactor`.
 - `getCofactor(Matrix m, Matrix temp, int oldRow, int oldColumn, int rowsOfFirstMatrix)`
+
 - `multiplyMatrices(Matrix first, Matrix second)`
+berie dve matice inštancie Matrix ako parametre a vráti maticu, ktorá je výsledkom ich násobenia. 
 - `cellMultiplication(Matrix first, Matrix second, int row, int column)`
+súkromná pomocná metóda používaná v metóde `multiplyMatrices`, ktorá berie dve matice, číslo riadku a stĺpca ako parameter, vynásobí konkrétnu bunku dvoch matíc a vráti výsledok.
 - `inverseMatrix(Marix m)`
+ako parameter berie štvorcovú maticu inštancie Matrix a vráti jej inverz.
 
 ## 3. Vstupné a výstupné dáta
 Pri spustení programu sa v termináli objaví “uvítací” text a možnosti pre jednotlivé operácie, z ktorých si uživateľ zvolí konkrétnu žiadanú možnosť tak, že do konzole napíše číslo možnosti. Následne sa spustí funkcia `fillMatrix()` (jeden alebo dva krát, v závislosti od zvolenej operácie), ktorá sa spýta uživateľa na počet riadkov a počet stĺpcov jeho (prvej) vstupnej matice. Na obe otázky uživateľ odpovedá jedným celým nezáporným číslom.
