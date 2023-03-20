@@ -41,7 +41,7 @@ berie inštanciu Matrix ako parameter a vracia novú inštanciu Matrix, ktorá j
 - `addMatrices(Matrix first, Matrix second)`
 berie dve matice rovnakej veľkosti inštancie Matrix ako parametre a vráti maticu, ktorá je výsledkom ich sčítania.
 - `scalarMultiplication(Matrix m, scalar)`
-berie inštanciu Matrix a skalár ako parametre a vracia novú inštanciu Matrix, ktorá je výsledkom násobenia matice skalárom.
+berie inštanciu Matrix a skalár ako parametre a vracia novú inštanciu Matrix, ktorá je výsledkom násobenia matice skalárom. Využíva lambda výraz, a teda to, že interface Matrix implementuje funkciu `map`.
 - `calculateDeterminant(Matrix m, int rowSize)`
 ako parameter berie štvorcovú maticu inštancie Matrix a veľkosť riadku a vypočíta jej determinant pomocou rekurzívneho algoritmu a expanzie kofaktorov. Ak sa rowsSize rovná 1, jednoducho vráti jediný prvok v matici, ktorý je determinantom. V opačnom prípade iteruje každý prvok prvého riadku matice a vypočíta jeho kofaktor volaním metódy `getCofactor()`. Potom vynásobí kofaktor so zodpovedajúcim prvkom prvého riadku a rekurzívne vypočíta determinant výslednej sub-matice. Metóda potom sčíta tieto hodnoty so striedavými znamienkami, čím získa determinant matice.[2]
 - `getCofactor(Matrix m, Matrix temp, int oldRow, int oldColumn, int rowsOfFirstMatrix)`
