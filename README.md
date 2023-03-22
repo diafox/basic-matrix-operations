@@ -16,10 +16,10 @@ Rozhranie a trieda sú podobné v tom, že môžu definovať metódy a môžu by
 - `map(DoubleFunction<Double> f)` umožňuje mapovanie matice, a teda prechádza jednotlivé prvky.
 
 ### 2.2 Tri druhy reprezentácie matíc
-Implementovala som tri hlavné reprezentácie matice:
+Implementované sú tri hlavné reprezentácie matice:
 - pomocou dvojrozmerného pola `double[][]` pre klasické matice (`class MatrixArray`) - obecná a najčastejšie používaná reprezentácia, kde sa všetky prvky ukladajú do dvojrozmerného pola;
 - pomocou dvojrozmerného pola `double[][]` pre riedke matice (`class MatrixSparseArray`)[1] - pole obsahuje tri "riadky", na prvom sa vždy ukladá súradnica riadku, na druhom súradnica stĺpca a na treťom hodnota nenulového prvku. Prvky, ktorých hodnota sa rovná nule sa do pola neukladajú, a tým sa šetrí miesto v pamäti a čas pri manipulácii s prvkami.
-- pomocou spojového zoznamu (`class MatrixLinkedList`), ktorý umožňuje efektívnu prácu s riedkymi maticami - takisto neukladá nulové prvky. Jendotlivé uzly spojového zoznamu majú atribúty *riadok*, *stĺpec*, *hodnota* a *pointer na ďalší uzol*.
+- pomocou spojového zoznamu (`class MatrixLinkedList`), ktorý umožňuje efektívnu prácu s riedkymi maticami - takisto neukladá nulové prvky. Jednotlivé uzly spojového zoznamu majú atribúty *riadok*, *stĺpec*, *hodnota* a *pointer na ďalší uzol*.
 
 ### 2.3 Trieda MatrixOperator
 Trieda MatrixOperator je pomocná trieda, ktorá poskytuje rôzne maticové operácie, ale aj vyplnenie matice či prevádzanie matice na inú reprezentáciu. Trieda berie inštanciu java.util.scanner ako parameter konštruktora.
@@ -43,7 +43,7 @@ berie dve matice rovnakej veľkosti inštancie Matrix ako parametre a vráti mat
 - `scalarMultiplication(Matrix m, scalar)`
 berie inštanciu Matrix a skalár ako parametre a vracia novú inštanciu Matrix, ktorá je výsledkom násobenia matice skalárom. Využíva lambda výraz, a teda to, že interface Matrix implementuje funkciu `map`.
 - `calculateDeterminant(Matrix m, int rowSize)`
-ako parameter berie štvorcovú maticu inštancie Matrix a veľkosť riadku a vypočíta jej determinant pomocou rekurzívneho algoritmu a expanzie kofaktorov. Ak sa rowsSize rovná 1, jednoducho vráti jediný prvok v matici, ktorý je determinantom. V opačnom prípade iteruje každý prvok prvého riadku matice a vypočíta jeho kofaktor volaním metódy `getCofactor()`. Potom vynásobí kofaktor so zodpovedajúcim prvkom prvého riadku a rekurzívne vypočíta determinant výslednej sub-matice. Metóda potom sčíta tieto hodnoty so striedavými znamienkami, čím získa determinant matice.[2]
+ako parameter berie štvorcovú maticu inštancie Matrix a veľkosť riadku a vypočíta jej determinant pomocou rekurzívneho algoritmu a expanzie kofaktorov. Ak sa rowsSize rovná 1, jednoducho vráti jediný prvok v matici, ktorý je determinantom. V opačnom prípade iteruje každý prvok prvého riadku matice a vypočíta jeho kofaktor volaním metódy `getCofactor`. Potom vynásobí kofaktor so zodpovedajúcim prvkom prvého riadku a rekurzívne vypočíta determinant výslednej sub-matice. Metóda potom sčíta tieto hodnoty so striedavými znamienkami, čím získa determinant matice.[2]
 - `getCofactor(Matrix m, Matrix temp, int oldRow, int oldColumn, int rowsOfFirstMatrix)`
 vypočítava kofaktor prvku v matici. Metóda má päť argumentov: vstupnú matica, temp je výstupná matica pre kofaktor, oldRow a oldColumn sú indexy prvku, pre ktorý sa má vypočítať kofaktor a rowsOfFirstMatrix je počet riadkov vo vstupnej matici.[2]
 - `multiplyMatrices(Matrix first, Matrix second)`
@@ -59,6 +59,8 @@ Pri spustení programu sa v termináli objaví “uvítací” text a možnosti 
 Ďalšia otázka sa týka reprezentácie matice. Uživateľ si môže vybrať, ktorú reprezetáciu zvoliť - či už pre všeobecnú maticu alebo jednu z typov riedkych matíc. Ak nevie, či je jeho matica riedka, program jeho maticu uloží v reprezentácii s dvojrozmerným polom a neskôr overí, či sa jedná o riedku maticu. Ak áno, maticu prevedie do reprezentácie spojovým zoznamom pre budúce efektívne zaobchádzanie.
 
 Nakoniec uživateľ zadáva konkrétne prvky matice vo formáte double, postupne pre jednotlivé riadky zľava doprava a jednotlivé stĺpce zhora dole. Po načítaní počtu prvkov, ktoré odpovedajú vopred stanovenej veľkosti matice program vydá výsledok, či už vo forme matice alebo jedného čísla.
+
+Postup sa opakuje v prípade, že bola zvolená možnosť, kde sú potrebné dve matice ako napríklad sčitovanie alebo násobenie.
 
 Uživateľ si tiež môže zvoliť možnosť "Tutorial", kde mu program predvedie jednotlivé operácie a ich fungovanie s rôznymi reprezentáciami.
 
