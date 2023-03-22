@@ -54,7 +54,7 @@ súkromná pomocná metóda používaná v metóde `multiplyMatrices`, ktorá be
 ako parameter berie štvorcovú maticu inštancie Matrix a vráti jej inverz.
 
 ## 3. Vstupné a výstupné dáta
-Pri spustení programu sa v termináli objaví “uvítací” text a možnosti pre jednotlivé operácie, z ktorých si uživateľ zvolí konkrétnu žiadanú možnosť tak, že do konzole napíše číslo možnosti. Následne sa spustí funkcia `fillMatrix()` (jeden alebo dva krát, v závislosti od zvolenej operácie), ktorá sa spýta uživateľa na počet riadkov a počet stĺpcov jeho (prvej) vstupnej matice. Na obe otázky uživateľ odpovedá jedným celým nezáporným číslom.
+Pri spustení programu sa v termináli objaví “uvítací” text a možnosti pre jednotlivé operácie, z ktorých si uživateľ zvolí konkrétnu žiadanú možnosť tak, že do konzole napíše číslo možnosti. Následne sa spustí funkcia `fillMatrix` (jeden alebo dva krát, v závislosti od zvolenej operácie), ktorá sa spýta uživateľa na počet riadkov a počet stĺpcov jeho (prvej) vstupnej matice. Na obe otázky uživateľ odpovedá jedným celým nezáporným číslom.
 
 Ďalšia otázka sa týka reprezentácie matice. Uživateľ si môže vybrať, ktorú reprezetáciu zvoliť - či už pre všeobecnú maticu alebo jednu z typov riedkych matíc. Ak nevie, či je jeho matica riedka, program jeho maticu uloží v reprezentácii s dvojrozmerným polom a neskôr overí, či sa jedná o riedku maticu. Ak áno, maticu prevedie do reprezentácie spojovým zoznamom pre budúce efektívne zaobchádzanie.
 
