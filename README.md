@@ -5,7 +5,7 @@
 V jazyku Java napíšte program pre jednoduché maticové operácie ako napríklad **násobenie matíc**, **transpozícia** či **výpočet determinantu** tak, aby bolo možné pracovať s rôznymi reprezentáciami matíc, prípadne nové reprezentácie dodatočne pridávať.
 
 ## 2.  Štruktúra programu
-Program sa skladá z piatich tried a jedného rozhrania (interface-u).
+Program sa skladá z šiestich tried a jedného rozhrania (interface-u).
 
 ### 2.1 Interface Matrix
 Rozhranie a trieda sú podobné v tom, že môžu definovať metódy a môžu byť použiteľné ako typy premenných a parametrov. Kľúčový rozdiel je však v tom, že rozhrania nemôžu byť instancované. Definujú množinu popisov metód, ale neposkytujú implementáciu pre tieto metódy. Hlavnou výhodou rozhraní je, že ich možno použiť na definovanie spoločného typu pre objekty rôznych tried. Tento fakt som využila v programe tak, že som vytvorila `interface Matrix`, ktorý definuje základné metódy pre maticové operácie a to nasledovné:
@@ -14,6 +14,7 @@ Rozhranie a trieda sú podobné v tom, že môžu definovať metódy a môžu by
 - `getElement(int row, int column)` vracia prvok matice v riadku row a stĺpci column;
 - `setElement(int row, int column, double value)` nastaví prvok v riadku row a stĺpci column na hodnotu value;
 - `map(DoubleFunction<Double> f)` umožňuje mapovanie matice, a teda prechádza jednotlivé prvky.
+- `createSameTypeMatrix()` slúži pre vytvorenie novej matice rovnakej inštancie.
 
 ### 2.2 Tri druhy reprezentácie matíc
 Implementované sú tri hlavné reprezentácie matice:
@@ -21,21 +22,23 @@ Implementované sú tri hlavné reprezentácie matice:
 - pomocou dvojrozmerného pola `double[][]` pre riedke matice (`class MatrixSparseArray`)[1] - pole obsahuje tri "riadky", na prvom sa vždy ukladá súradnica riadku, na druhom súradnica stĺpca a na treťom hodnota nenulového prvku. Prvky, ktorých hodnota sa rovná nule sa do pola neukladajú, a tým sa šetrí miesto v pamäti a čas pri manipulácii s prvkami.
 - pomocou spojového zoznamu (`class MatrixLinkedList`), ktorý umožňuje efektívnu prácu s riedkymi maticami - takisto neukladá nulové prvky. Jednotlivé uzly spojového zoznamu majú atribúty *riadok*, *stĺpec*, *hodnota* a *pointer na ďalší uzol*.
 
-### 2.3 Trieda MatrixOperator
-Trieda MatrixOperator je pomocná trieda, ktorá poskytuje rôzne maticové operácie, ale aj vyplnenie matice či prevádzanie matice na inú reprezentáciu. Trieda berie inštanciu java.util.scanner ako parameter konštruktora.
+### 2.3 Trieda IOOperator
+Trieda berie inštanciu java.util.scanner ako parameter konštruktora.
 Definované metódy:
-- `printMatrix(Matrix m)`
-berie inštanciu Matrix ako parameter a vytlačí jej prvky (každý riadok matice na nový riadok) do konzoly s použitím triedy DecimalFormat na formátovanie desatinných čísel.
-- `isSparse(Matrix m)`
-berie inštanciu Matrix ako parameter a vracia hodnotu true, ak je matica riedka (obsahuje menej alebo rovných 10% nenulových prvkov), inak vracia hodnotu false.
+- `fillMatrix()`
+vyzýva uživateľa na vloženie počtu riadkov a stĺpcov matice. Dáva na výber voľbu reprezentácie matice podľa jej hustoty. V prípade, že uživateľ nevie, či je jeho matica riedka, metóda to overí a zvolí správnu reprezentáciu. Ďalej uživateľ vkladá jednotlivé prvky matice zľava doprava, zhora dolu. Vytvorí a vráti novú inštanciu Matrix.
 - `convertToLinkedListMatrix(MatrixArray m)`
 pomocná trieda, ktorá berie inštanciu MatrixArray ako parameter a vracia novú inštanciu MatrixLinkedList konvertovanú z parametra.
 - `convertToSparseArrayMatrix(MatrixArray m, int nonZero)`
 pomocná trieda, ktorá berie inštanciu MatrixArray a počet nenulových prvkov ako parameter a vracia novú inštanciu MatrixSparseArray konvertovanú z parametra.
-- `createSameTypeMatrix(Matrix m)`
-súkromná pomocná trieda, ktorá berie inštanciu Matrix ako parameter a vracia novú inštanciu Matrix rovnakého typu ako je tá v parametri. Používa sa na vytvorenie novej matice s rovnakým typom ako vstupná matice pre operácie, ako je napríklad transpozícia matice.
-- `fillMatrix()`
-vyzýva uživateľa na vloženie počtu riadkov a stĺpcov matice. Dáva na výber voľbu reprezentácie matice podľa jej hustoty. V prípade, že uživateľ nevie, či je jeho matica riedka, metóda to overí a zvolí správnu reprezentáciu. Ďalej uživateľ vkladá jednotlivé prvky matice zľava doprava, zhora dolu. Vytvorí a vráti novú inštanciu Matrix.
+- `isSparse(Matrix m)`
+berie inštanciu Matrix ako parameter a vracia hodnotu true, ak je matica riedka (obsahuje menej alebo rovných 10% nenulových prvkov), inak vracia hodnotu false.
+- `printMatrix(Matrix m)`
+berie inštanciu Matrix ako parameter a vytlačí jej prvky (každý riadok matice na nový riadok) do konzoly s použitím triedy DecimalFormat na formátovanie desatinných čísel.
+
+### 2.4 Trieda MatrixOperator
+Trieda MatrixOperator je pomocná trieda, ktorá poskytuje rôzne maticové operácie. 
+Definované metódy:
 - `transpose(Matrix m)`
 berie inštanciu Matrix ako parameter a vracia novú inštanciu Matrix, ktorá je transponovaním vstupnej matice. Používa metódu createSameTypeMatrix na vytvorenie novej matice rovnakého typu ako vstupná matica.
 - `addMatrices(Matrix first, Matrix second)`
